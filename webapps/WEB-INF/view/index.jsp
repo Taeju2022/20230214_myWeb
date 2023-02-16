@@ -22,6 +22,7 @@
 	$(".btn.logout").on("click", handlerClickBtnLogout);
 	$(".btn.myinfo").on("click", handlerClickBtnMyinfo);
 	
+	
 	function handlerClickBtnMyinfo(){
 		console.log("BtnMyinfo 눌림");
 		location.href="<%=request.getContextPath()%>/myinfo";
@@ -32,6 +33,7 @@
 	}
 	function handlerClickBtnLogout(){
 		console.log("btnLogout 눌림");
+		location.href="<%=request.getContextPath()%>/logout"
 	}
 
 	</script>
