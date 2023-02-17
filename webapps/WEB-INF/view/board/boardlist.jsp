@@ -4,6 +4,9 @@
     <h1>게시글 목록</h1>
     
     ${boardlist }
+    <c:forEach items="$boardList }" var="vo">
+    ${vo.boardNum " }<br>
+    </c:forEach>
     <hr>
 </section>
     
