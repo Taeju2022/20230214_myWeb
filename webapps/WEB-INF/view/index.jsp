@@ -16,14 +16,15 @@
 		<button class="btn myinfo">내정보보기</button>
 	</c:if>
 	
-	<jsp:include page="/WEB-INF/view/board/board/boardlist.jsp"/>
+	<jsp:include page="/WEB-INF/view/board/boardlist.jsp"/>
+	
+	
 	
 	
 	<script>
 	$(".btn.login").on("click", handlerClickBtnLogin);
 	$(".btn.logout").on("click", handlerClickBtnLogout);
 	$(".btn.myinfo").on("click", handlerClickBtnMyinfo);
-	
 	
 	function handlerClickBtnMyinfo(){
 		console.log("BtnMyinfo 눌림");
@@ -35,7 +36,7 @@
 	}
 	function handlerClickBtnLogout(){
 		console.log("btnLogout 눌림");
-		location.href="<%=request.getContextPath()%>/logout"
+		location.href="<%=request.getContextPath()%>/logout";
 	}
 
 	</script>
