@@ -11,15 +11,45 @@ import kh.common.jdbc.JdbcTemplate.*;
 
 public class BoardDao {
 	public List<BoardDao> getBoardList(Connection conn){
-		List<BoardVo> result = null;
-		String sql = "SELECT BOARD_NUM,BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT "
-				+", BOARD_ORIGINAL_FILENAME, BOARD_RENAME_FILENAME";
 		
+		public int getCountBoard(Connection conn) {
+			int result = 0;
+			String sql = "select count(*) cnt from board";
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					result = rs.get
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return result;
+		}
+		
+		public List<BoardDao> getBoardList(Connection conn, int srnum, int ernum){
+		
+			List<BoardVo> result = null;
+			String sql = "SELECT BOARD_NUM,BOARD_TITLE, BOARD_WRITER, BOARD_CONTENT "
+				+", BOARD_ORIGINAL_FILENAME, BOARD_RENAME_FILENAME, BOARD_DATE"
+				+ ", BOARD_LEVEL, BOARD_REF, BOARD_REPLY_SEQ, BOARD_READCOUNT"
+				+ "FROM BOARD"
+				+ "ORDER BY BOARD_REF DESC, BOARD_REPLY_SEQ ASC) tbl_1"
+				+ ") tbl_2"
+				+ "WHERE RN BETWEEN 3 AND 7";
 		
 		//" "안에는 ; 없어야 함. \R\N도 없애기
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -45,7 +75,7 @@ public class BoardDao {
 			e.printStackTrace();
 		} finally {
 			close(rs);
-			cloas(pstmt);
+			close(pstmt);
 		}
 	}
 }
